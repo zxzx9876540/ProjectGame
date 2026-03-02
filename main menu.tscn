@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://cfay0qb8qim2l"]
+
+[ext_resource type="Texture2D" uid="uid://dxjy8fir4mhvt" path="res://รูปสิ่งต่างๆ/ฉากหน้าเกม.png" id="1_7mewq"]
+[ext_resource type="Texture2D" uid="uid://bivysd5mj0ssa" path="res://รูปสิ่งต่างๆ/กระดาษเก่า.png" id="2_bajiw"]
+[ext_resource type="Texture2D" uid="uid://blpyia48wb3wc" path="res://รูปสิ่งต่างๆ/ชื่อเกม.png" id="2_f0j1r"]
+[ext_resource type="Script" uid="uid://jt8wg8qjqf60" path="res://Script/MainBackground.cs" id="2_mw7qi"]
+[ext_resource type="FontFile" uid="uid://c47ch3g5wp8b7" path="res://font/Cinzel/static/Cinzel-ExtraBold.ttf" id="4_qqwyt"]
+[ext_resource type="Script" uid="uid://b755qlngbeen4" path="res://Main Menu Scripts/NewGame.cs" id="5_5d0og"]
+[ext_resource type="AudioStream" uid="uid://kp3cl8ba2cm3" path="res://Background Music/Campfire at the Crossroads.mp3" id="6_mw7qi"]
+
+[node name="MainMenu" type="Control" unique_id=118204540]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="MainBackground" type="TextureRect" parent="." unique_id=1878183523]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7mewq")
+expand_mode = 1
+script = ExtResource("2_mw7qi")
+
+[node name="ชื่อเกม" type="TextureRect" parent="." unique_id=296870718]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 16.0
+offset_right = 663.0
+offset_bottom = 334.0
+texture = ExtResource("2_f0j1r")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="กระดาษเก่า" type="TextureRect" parent="." unique_id=1664126206]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 57.000004
+offset_top = 385.00003
+offset_right = 33.465332
+offset_bottom = 236.49036
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.26496163, 0.31832445)
+texture = ExtResource("2_bajiw")
+expand_mode = 1
+
+[node name="NewGame" type="Button" parent="." unique_id=1005187863]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 424.0
+offset_right = 360.0
+offset_bottom = 500.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_qqwyt")
+theme_override_font_sizes/font_size = 35
+text = "New game"
+flat = true
+script = ExtResource("5_5d0og")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1092444006]
+position = Vector2(-1103, 323)
+stream = ExtResource("6_mw7qi")
+autoplay = true

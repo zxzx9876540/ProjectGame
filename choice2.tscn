@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://cvo7lub8eyjcc"]
+
+[ext_resource type="Texture2D" uid="uid://cq55o1hkb7yxj" path="res://BattleBackground/ฉากต่อสู้ในป่าตอนกลางวัน.png" id="1_kqgjr"]
+[ext_resource type="Texture2D" uid="uid://dfrr0wsam4ex1" path="res://รูปสิ่งต่างๆ/รูปอัพ stats.png" id="2_1cr37"]
+[ext_resource type="Script" uid="uid://dcuhgfmeunq4i" path="res://Script/choice2battleinforest.cs" id="3_kqgjr"]
+[ext_resource type="Script" uid="uid://dgg375hlt1iqf" path="res://Script/Priestfollowyou.cs" id="4_2rc5m"]
+[ext_resource type="Script" uid="uid://b2rcp8hyj4a7j" path="res://Script/choice2stats.cs" id="4_kqgjr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ht8n"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8qlf"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" unique_id=348986988]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="หมู่บ้านเริ่มต้น" type="TextureRect" parent="." unique_id=734497875]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_kqgjr")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=2070116753]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -297.0
+offset_right = 374.0
+offset_bottom = -84.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 33
+theme_override_styles/normal = SubResource("StyleBoxFlat_8ht8n")
+text = "นั้นเป็นทางเลือกที่ฉลาดแต่หมู่บ้านที่คุณเติบโตคนที่รักทุกคนต้องตายเพราะความอ่อนแอของคุณ ตอนนี้คุณวิ่งหนีมาเรื่อยๆ จนมาถึงป่าแห่งหนึ่งซึ่งไม่ไกลจากหมู่บ้านคุณมากนัก คุณเลือกที่จะทำอะไร"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="." unique_id=298694345]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -358.0
+offset_top = -61.0
+offset_right = 369.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_v8qlf")
+text = "ลองคิดซะว่าเป็นตัวคุณแล้วลองเลือกดูสิ"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=753363731]
+layout_mode = 0
+offset_left = 274.0
+offset_top = 359.0
+offset_right = 626.0
+offset_bottom = 501.0
+theme_override_font_sizes/font_size = 42
+text = "พักที่นี่"
+script = ExtResource("4_2rc5m")
+
+[node name="Button2" type="Button" parent="." unique_id=818848312]
+layout_mode = 0
+offset_left = 665.0
+offset_top = 360.0
+offset_right = 1017.0
+offset_bottom = 502.0
+theme_override_font_sizes/font_size = 42
+text = "เดินทางต่อ"
+script = ExtResource("3_kqgjr")
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1974911783]
+layout_mode = 0
+offset_top = 487.0
+offset_right = 172.0
+offset_bottom = 647.0
+texture_normal = ExtResource("2_1cr37")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("4_kqgjr")
+
+[connection signal="pressed" from="Button2" to="Button" method="onpressedbattleinforest"]
+[connection signal="pressed" from="TextureButton" to="Button" method="OnStatUpgradePressed"]

@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://d1xthbxre2peg"]
+
+[ext_resource type="Script" uid="uid://b5sgkr5kdl3po" path="res://Script/Upgrade.cs" id="1_g2cgu"]
+[ext_resource type="Texture2D" uid="uid://b0alh77uihyt2" path="res://รูปสิ่งต่างๆ/กรอยตัวหนังสือเฟี๊ยวๆ.png" id="2_6w8xc"]
+[ext_resource type="Texture2D" uid="uid://bivysd5mj0ssa" path="res://รูปสิ่งต่างๆ/กระดาษเก่า.png" id="3_tlmoe"]
+[ext_resource type="Texture2D" uid="uid://dvtc6un1br2ub" path="res://รูปสิ่งต่างๆ/รูปบวก.png" id="4_a4xni"]
+[ext_resource type="Texture2D" uid="uid://rs75lap8mva0" path="res://รูปสิ่งต่างๆ/ลูกศรย้อนกลับ.png" id="5_a0bff"]
+
+[node name="Control" type="Control" unique_id=1469960776 node_paths=PackedStringArray("_labelName", "_labelPoints", "_labelStr", "_labelAgi", "_labelInt")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g2cgu")
+_labelName = NodePath("VBoxContainer/Label")
+_labelPoints = NodePath("VBoxContainer/Label2")
+_labelStr = NodePath("VBoxContainer/HBoxContainer/Label")
+_labelAgi = NodePath("VBoxContainer/HBoxContainer2/Label")
+_labelInt = NodePath("VBoxContainer/HBoxContainer3/Label")
+
+[node name="กระดาษเก่า" type="TextureRect" parent="." unique_id=47827299]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -121.0
+offset_top = -287.0
+offset_right = 111.0
+offset_bottom = 292.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_6w8xc")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=818088704]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 127.0
+offset_right = 1040.0
+offset_bottom = 523.0
+texture = ExtResource("3_tlmoe")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=360125654]
+layout_mode = 0
+offset_left = 425.0
+offset_top = 175.0
+offset_right = 547.0
+offset_bottom = 466.0
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=502663779]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=1482040317]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1722207714]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=980090949]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1109816361]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=925424031]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer" unique_id=972902418]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3" unique_id=1239688349]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1325573733]
+layout_mode = 0
+offset_left = 900.0
+offset_top = 272.0
+offset_right = 1014.0
+offset_bottom = 369.0
+texture_normal = ExtResource("4_a4xni")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureButton2" type="TextureButton" parent="." unique_id=1520162136]
+layout_mode = 0
+offset_left = 900.0
+offset_top = 333.0
+offset_right = 1014.0
+offset_bottom = 430.0
+texture_normal = ExtResource("4_a4xni")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureButton3" type="TextureButton" parent="." unique_id=176572585]
+layout_mode = 0
+offset_left = 900.0
+offset_top = 389.0
+offset_right = 1014.0
+offset_bottom = 486.0
+texture_normal = ExtResource("4_a4xni")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureButton4" type="TextureButton" parent="." unique_id=1394908651]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 484.0
+offset_right = 247.0
+offset_bottom = 645.0
+texture_normal = ExtResource("5_a0bff")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="TextureButton" to="." method="OnStrPressed"]
+[connection signal="pressed" from="TextureButton2" to="." method="OnAgiPressed"]
+[connection signal="pressed" from="TextureButton3" to="." method="OnIntPressed"]
+[connection signal="pressed" from="TextureButton4" to="." method="OnBackPressed"]

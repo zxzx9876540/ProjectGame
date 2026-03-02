@@ -1,0 +1,227 @@
+[gd_scene format=3 uid="uid://olh4024b2v5n"]
+
+[ext_resource type="Script" uid="uid://dkkeyeidpg1bt" path="res://Script/BattleInForest.cs" id="1_x01gd"]
+[ext_resource type="Texture2D" uid="uid://cq55o1hkb7yxj" path="res://BattleBackground/ฉากต่อสู้ในป่าตอนกลางวัน.png" id="2_dwfqv"]
+[ext_resource type="Script" uid="uid://cu7pgtvkypipb" path="res://skill icon/Wolf.cs" id="3_jd83j"]
+[ext_resource type="Texture2D" uid="uid://dyd4v52ga5god" path="res://Enemy/หมาป่า.png" id="4_rcxkh"]
+[ext_resource type="Script" uid="uid://cquo4nkfnwpv4" path="res://skill icon/Player.cs" id="5_8iva1"]
+[ext_resource type="Texture2D" uid="uid://db4f1w0theqcj" path="res://รูปตัวละคร/นักเวทฝึกหัด.png" id="6_eb410"]
+[ext_resource type="FontFile" uid="uid://b445shacx64y2" path="res://font/Cinzel/Cinzel-VariableFont_wght.ttf" id="10_8iva1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x01gd"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwfqv"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jd83j"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rcxkh"]
+
+[node name="BattleScene" type="Control" unique_id=1148854927 node_paths=PackedStringArray("_labelEnemyName", "_hpBar", "_labelHpVal", "_labelPlayerName", "_playerHpBar", "_labelPlayerHpVal", "_playerMpBar", "_labelPlayerMpVal", "_battleLog", "_dicePanel", "_diceFaceLabel", "_diceResultLabel", "_rollButton", "_startBattleButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x01gd")
+_labelEnemyName = NodePath("Enemy/MarginContainer/VBoxContainer/Name")
+_hpBar = NodePath("Enemy/MarginContainer/VBoxContainer/HBoxContainer/ProgressBar")
+_labelHpVal = NodePath("Enemy/MarginContainer/VBoxContainer/HBoxContainer/Hpval")
+_labelPlayerName = NodePath("Label")
+_playerHpBar = NodePath("ProgressBar")
+_labelPlayerHpVal = NodePath("Label5")
+_playerMpBar = NodePath("ProgressBar2")
+_labelPlayerMpVal = NodePath("Label3")
+_battleLog = NodePath("RichTextLabel")
+_dicePanel = NodePath("DicePanel")
+_diceFaceLabel = NodePath("DicePanel/Label")
+_diceResultLabel = NodePath("DicePanel/diceresult")
+_rollButton = NodePath("DicePanel/Button")
+_startBattleButton = NodePath("DicePanel/Button2")
+
+[node name="backgrond" type="TextureRect" parent="." unique_id=276054590]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_dwfqv")
+expand_mode = 1
+
+[node name="Wolf" type="Node2D" parent="." unique_id=1114234315]
+script = ExtResource("3_jd83j")
+
+[node name="TextureRect" type="Sprite2D" parent="Wolf" unique_id=738992686]
+position = Vector2(227.00002, 255)
+scale = Vector2(0.3269043, 0.2516276)
+texture = ExtResource("4_rcxkh")
+
+[node name="Player" type="Node2D" parent="." unique_id=16846798]
+position = Vector2(0, -1)
+script = ExtResource("5_8iva1")
+
+[node name="TextureRect2" type="Sprite2D" parent="Player" unique_id=456835948]
+position = Vector2(1042, 484)
+scale = Vector2(0.27734378, 0.29296875)
+texture = ExtResource("6_eb410")
+
+[node name="Enemy" type="PanelContainer" parent="." unique_id=771928451]
+layout_mode = 0
+offset_left = 150.0
+offset_right = 316.0
+offset_bottom = 104.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_x01gd")
+
+[node name="MarginContainer" type="MarginContainer" parent="Enemy" unique_id=756925255]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Enemy/MarginContainer" unique_id=673246273]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Enemy/MarginContainer/VBoxContainer" unique_id=1410192129]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Enemy/MarginContainer/VBoxContainer" unique_id=1144624002]
+layout_mode = 2
+
+[node name="HPtag" type="Label" parent="Enemy/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1145956560]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "HP"
+
+[node name="ProgressBar" type="ProgressBar" parent="Enemy/MarginContainer/VBoxContainer/HBoxContainer" unique_id=425191036]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+
+[node name="Hpval" type="Label" parent="Enemy/MarginContainer/VBoxContainer/HBoxContainer" unique_id=258586176]
+layout_mode = 2
+
+[node name="Player2" type="PanelContainer" parent="." unique_id=1400092700]
+layout_mode = 0
+offset_left = 987.0
+offset_top = 201.0
+offset_right = 1236.0
+offset_bottom = 305.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dwfqv")
+
+[node name="Label" type="Label" parent="." unique_id=925420814]
+layout_mode = 0
+offset_left = 986.0
+offset_top = 203.0
+offset_right = 1236.0
+offset_bottom = 227.0
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=196861243]
+layout_mode = 0
+offset_left = 992.0
+offset_top = 240.0
+offset_right = 1014.0
+offset_bottom = 263.0
+text = "HP"
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=132635403]
+layout_mode = 0
+offset_left = 1016.0
+offset_top = 238.0
+offset_right = 1120.0
+offset_bottom = 265.0
+
+[node name="Label3" type="Label" parent="." unique_id=445656849]
+layout_mode = 0
+offset_left = 1137.0
+offset_top = 273.0
+offset_right = 1176.0
+offset_bottom = 296.0
+
+[node name="Label4" type="Label" parent="." unique_id=1257536560]
+layout_mode = 0
+offset_left = 992.0
+offset_top = 275.0
+offset_right = 1032.0
+offset_bottom = 298.0
+text = "MP"
+
+[node name="ProgressBar2" type="ProgressBar" parent="." unique_id=1927239650]
+modulate = Color(0, 0, 1, 1)
+layout_mode = 0
+offset_left = 1016.0
+offset_top = 272.0
+offset_right = 1120.0
+offset_bottom = 299.0
+
+[node name="Label5" type="Label" parent="." unique_id=569242397]
+layout_mode = 0
+offset_left = 1135.0
+offset_top = 241.0
+offset_right = 1174.0
+offset_bottom = 264.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1360901232]
+layout_mode = 0
+offset_left = 442.0
+offset_top = 4.0
+offset_right = 889.0
+offset_bottom = 181.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_jd83j")
+bbcode_enabled = true
+
+[node name="DicePanel" type="Control" parent="." unique_id=1893529125]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="DicePanel" unique_id=793416510]
+layout_mode = 0
+offset_left = 286.0
+offset_top = 167.0
+offset_right = 891.0
+offset_bottom = 316.0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxTexture_rcxkh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="diceresult" type="Label" parent="DicePanel" unique_id=739332348]
+layout_mode = 0
+offset_left = 397.0
+offset_top = 324.0
+offset_right = 941.0
+offset_bottom = 394.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+
+[node name="Button" type="Button" parent="DicePanel" unique_id=1971993913]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.054
+offset_left = 525.0
+offset_top = 416.0
+offset_right = 661.0
+offset_bottom = 457.008
+theme_override_fonts/font = ExtResource("10_8iva1")
+theme_override_font_sizes/font_size = 50
+text = "ROLL"
+
+[node name="Button2" type="Button" parent="DicePanel" unique_id=1697395279]
+layout_mode = 0
+offset_left = 419.0
+offset_top = 518.0
+offset_right = 769.0
+offset_bottom = 594.0
+theme_override_fonts/font = ExtResource("10_8iva1")
+theme_override_font_sizes/font_size = 50
+text = "START BATTLE"
+
+[connection signal="pressed" from="DicePanel/Button" to="." method="OnRollButtonPressed"]
+[connection signal="pressed" from="DicePanel/Button2" to="." method="OnStartBattlePressed"]

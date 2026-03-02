@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://b6w1a73in4e1e"]
+
+[ext_resource type="Texture2D" uid="uid://u4l7t7ou51a8" path="res://BattleBackground/หมู่บ้านเริ่มต้น.png" id="1_6wugi"]
+[ext_resource type="Texture2D" uid="uid://bivysd5mj0ssa" path="res://รูปสิ่งต่างๆ/กระดาษเก่า.png" id="2_5ali3"]
+[ext_resource type="FontFile" uid="uid://ba8lkm3mgrq7t" path="res://font/Chakra_Petch/ChakraPetch-Regular.ttf" id="2_psvt4"]
+[ext_resource type="Script" uid="uid://bbja8mbem6yxe" path="res://Script/Choicemage.cs" id="3_wpp3j"]
+[ext_resource type="Script" uid="uid://bgobekyvcj7sj" path="res://Script/Mage.cs" id="6_64kpp"]
+[ext_resource type="Texture2D" uid="uid://db4f1w0theqcj" path="res://รูปตัวละคร/นักเวทฝึกหัด.png" id="7_wpp3j"]
+[ext_resource type="Script" uid="uid://csbuuhngnrhw6" path="res://Script/MagePng.cs" id="9_sejuf"]
+
+[node name="Choice" type="Control" unique_id=1844361908]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="หมู่บ้านเริ่มต้น" type="TextureRect" parent="." unique_id=1098120512]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -51.78882
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.0623449, 1.0056251)
+pivot_offset = Vector2(93.0909, 30.04082)
+texture = ExtResource("1_6wugi")
+expand_mode = 1
+
+[node name="กระดาษเก่า" type="TextureRect" parent="." unique_id=1134553633]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -154.0
+offset_top = 5.0
+offset_right = 187.0
+offset_bottom = 79.0
+grow_horizontal = 2
+texture = ExtResource("2_5ali3")
+expand_mode = 1
+
+[node name="choicemage" type="TextureButton" parent="." unique_id=886187540]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -196.0
+offset_top = -247.0
+offset_right = 210.0
+offset_bottom = 285.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_5ali3")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_wpp3j")
+
+[node name="Label" type="Label" parent="." unique_id=1093483324]
+layout_mode = 1
+offset_left = 509.99997
+offset_top = 12.000001
+offset_right = 771.0
+offset_bottom = 69.0
+scale = Vector2(0.94037807, 0.89924943)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_psvt4")
+theme_override_font_sizes/font_size = 43
+text = "ประวัติตัวละคร"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="." unique_id=584507002]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 562.0
+offset_top = 121.0
+offset_right = -429.0
+offset_bottom = -461.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_psvt4")
+theme_override_font_sizes/font_size = 50
+text = "นักเวทย์"
+
+[node name="Mage" type="Button" parent="." unique_id=68654695]
+layout_mode = 0
+offset_left = 489.0
+offset_top = 464.0
+offset_right = 763.0
+offset_bottom = 536.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_psvt4")
+theme_override_font_sizes/font_size = 24
+text = "คลิก
+ดูรายละเอียดอาชีพ"
+flat = true
+script = ExtResource("6_64kpp")
+
+[node name="MagePNG" type="TextureButton" parent="." unique_id=1443124085]
+layout_mode = 0
+offset_left = 469.0
+offset_top = 173.0
+offset_right = 781.0
+offset_bottom = 456.0
+texture_normal = ExtResource("7_wpp3j")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("9_sejuf")
+
+[connection signal="pressed" from="choicemage" to="choicemage" method="OnMagePressed"]
+[connection signal="pressed" from="MagePNG" to="choicemage" method="OnMagePressed"]

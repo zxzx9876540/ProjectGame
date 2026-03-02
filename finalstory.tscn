@@ -1,0 +1,230 @@
+[gd_scene format=3 uid="uid://da0tug63qeegb"]
+
+[ext_resource type="Script" uid="uid://coyyyeit38aga" path="res://Finalstory.cs" id="1_7s16d"]
+[ext_resource type="Texture2D" uid="uid://cksqrkl5temy2" path="res://BattleBackground/หมู่บ้านที่พังทลาย.png" id="2_hwjv6"]
+[ext_resource type="Script" uid="uid://cu7pgtvkypipb" path="res://skill icon/Wolf.cs" id="3_s4u2w"]
+[ext_resource type="Texture2D" uid="uid://okgwonxk4yc8" path="res://Enemy/บอสเจ้าลัทธิ.png" id="4_qlja7"]
+[ext_resource type="Script" uid="uid://cquo4nkfnwpv4" path="res://skill icon/Player.cs" id="5_webb0"]
+[ext_resource type="Texture2D" uid="uid://db4f1w0theqcj" path="res://รูปตัวละคร/นักเวทฝึกหัด.png" id="6_fkm6u"]
+[ext_resource type="FontFile" uid="uid://b445shacx64y2" path="res://font/Cinzel/Cinzel-VariableFont_wght.ttf" id="7_mixq4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aba8r"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhumf"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r28kb"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s237b"]
+
+[node name="Control" type="Control" unique_id=774554904 node_paths=PackedStringArray("_labelEnemyName", "_hpBar", "_labelHpVal", "_labelPlayerName", "_playerHpBar", "_labelPlayerHpVal", "_playerMpBar", "_labelPlayerMpVal", "_battleLog", "_dicePanel", "_diceFaceLabel", "_diceResultLabel", "_rollButton", "_startBattleButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7s16d")
+_labelEnemyName = NodePath("Enemy/MarginContainer/VBoxContainer/Name")
+_hpBar = NodePath("Enemy/MarginContainer/VBoxContainer/HBoxContainer/ProgressBar")
+_labelHpVal = NodePath("Enemy/MarginContainer/VBoxContainer/HBoxContainer/Hpval")
+_labelPlayerName = NodePath("namehero")
+_playerHpBar = NodePath("หลอดเลือด")
+_labelPlayerHpVal = NodePath("เลือด")
+_playerMpBar = NodePath("หลอดมานา")
+_labelPlayerMpVal = NodePath("มานา")
+_battleLog = NodePath("หมู่บ้านเริ่มต้น/RichTextLabel")
+_dicePanel = NodePath("DicePanel")
+_diceFaceLabel = NodePath("DicePanel/Label")
+_diceResultLabel = NodePath("DicePanel/diceresult")
+_rollButton = NodePath("DicePanel/Button")
+_startBattleButton = NodePath("DicePanel/Button2")
+
+[node name="หมู่บ้านเริ่มต้น" type="TextureRect" parent="." unique_id=933372929]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.0623449, 1.0056251)
+pivot_offset = Vector2(93.0909, 30.04082)
+texture = ExtResource("2_hwjv6")
+expand_mode = 1
+
+[node name="เจ้าลัทธิ" type="Node2D" parent="หมู่บ้านเริ่มต้น" unique_id=623036915]
+script = ExtResource("3_s4u2w")
+
+[node name="TextureRect" type="Sprite2D" parent="หมู่บ้านเริ่มต้น/เจ้าลัทธิ" unique_id=2142712389]
+position = Vector2(227.00002, 255)
+scale = Vector2(0.3269043, 0.2516276)
+texture = ExtResource("4_qlja7")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="หมู่บ้านเริ่มต้น" unique_id=1329430648]
+layout_mode = 0
+offset_left = 442.0
+offset_top = 4.0
+offset_right = 889.0
+offset_bottom = 181.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_aba8r")
+bbcode_enabled = true
+
+[node name="Player" type="Node2D" parent="." unique_id=1143510041]
+position = Vector2(0, -1)
+script = ExtResource("5_webb0")
+
+[node name="TextureRect2" type="Sprite2D" parent="Player" unique_id=1318702086]
+position = Vector2(1042, 484)
+scale = Vector2(0.27734378, 0.29296875)
+texture = ExtResource("6_fkm6u")
+
+[node name="Enemy" type="PanelContainer" parent="." unique_id=1502455159]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 3.854
+offset_right = 317.0
+offset_bottom = 107.854004
+theme_override_styles/panel = SubResource("StyleBoxFlat_rhumf")
+
+[node name="MarginContainer" type="MarginContainer" parent="Enemy" unique_id=1267782886]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Enemy/MarginContainer" unique_id=399449758]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Enemy/MarginContainer/VBoxContainer" unique_id=1096976033]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Enemy/MarginContainer/VBoxContainer" unique_id=2056410204]
+layout_mode = 2
+
+[node name="HPtag" type="Label" parent="Enemy/MarginContainer/VBoxContainer/HBoxContainer" unique_id=638808424]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "HP"
+
+[node name="ProgressBar" type="ProgressBar" parent="Enemy/MarginContainer/VBoxContainer/HBoxContainer" unique_id=922133363]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+
+[node name="Hpval" type="Label" parent="Enemy/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1736814180]
+layout_mode = 2
+
+[node name="Player2" type="PanelContainer" parent="." unique_id=1197607968]
+layout_mode = 0
+offset_left = 987.0
+offset_top = 201.0
+offset_right = 1236.0
+offset_bottom = 305.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_r28kb")
+
+[node name="namehero" type="Label" parent="." unique_id=1502898117]
+layout_mode = 0
+offset_left = 986.0
+offset_top = 204.0
+offset_right = 1236.0
+offset_bottom = 238.0
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[node name="เขียน hp เฉยๆ" type="Label" parent="." unique_id=8097067]
+layout_mode = 0
+offset_left = 992.0
+offset_top = 240.0
+offset_right = 1014.0
+offset_bottom = 263.0
+text = "HP"
+
+[node name="หลอดเลือด" type="ProgressBar" parent="." unique_id=537939955]
+layout_mode = 0
+offset_left = 1016.0
+offset_top = 238.0
+offset_right = 1120.0
+offset_bottom = 265.0
+
+[node name="เลือด" type="Label" parent="." unique_id=1996190216]
+layout_mode = 0
+offset_left = 1135.0
+offset_top = 241.0
+offset_right = 1174.0
+offset_bottom = 264.0
+
+[node name="มานาเฉยๆ" type="Label" parent="." unique_id=176391396]
+layout_mode = 0
+offset_left = 992.0
+offset_top = 275.0
+offset_right = 1032.0
+offset_bottom = 298.0
+text = "MP"
+
+[node name="หลอดมานา" type="ProgressBar" parent="." unique_id=1663805376]
+modulate = Color(0, 0, 1, 1)
+layout_mode = 0
+offset_left = 1016.0
+offset_top = 272.0
+offset_right = 1120.0
+offset_bottom = 299.0
+
+[node name="มานา" type="Label" parent="." unique_id=1130776374]
+layout_mode = 0
+offset_left = 1137.0
+offset_top = 273.0
+offset_right = 1176.0
+offset_bottom = 296.0
+
+[node name="DicePanel" type="Control" parent="." unique_id=1629292797]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="DicePanel" unique_id=457003724]
+layout_mode = 0
+offset_left = 286.0
+offset_top = 167.0
+offset_right = 891.0
+offset_bottom = 316.0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxTexture_s237b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="diceresult" type="Label" parent="DicePanel" unique_id=184686479]
+layout_mode = 0
+offset_left = 397.0
+offset_top = 324.0
+offset_right = 941.0
+offset_bottom = 394.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+
+[node name="Button" type="Button" parent="DicePanel" unique_id=1335675726]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.054
+offset_left = 525.0
+offset_top = 416.0
+offset_right = 661.0
+offset_bottom = 457.008
+theme_override_fonts/font = ExtResource("7_mixq4")
+theme_override_font_sizes/font_size = 50
+text = "ROLL"
+
+[node name="Button2" type="Button" parent="DicePanel" unique_id=2046880632]
+layout_mode = 0
+offset_left = 419.0
+offset_top = 518.0
+offset_right = 769.0
+offset_bottom = 594.0
+theme_override_fonts/font = ExtResource("7_mixq4")
+theme_override_font_sizes/font_size = 50
+text = "START BATTLE"
+
+[connection signal="pressed" from="DicePanel/Button" to="." method="OnRollButtonPressed"]
+[connection signal="pressed" from="DicePanel/Button2" to="." method="OnStartBattlePressed"]

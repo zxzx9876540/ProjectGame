@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bv58vvvxu7s1x"]
+
+[ext_resource type="Texture2D" uid="uid://bivysd5mj0ssa" path="res://รูปสิ่งต่างๆ/กระดาษเก่า.png" id="1_5lmrd"]
+[ext_resource type="Script" uid="uid://cvjet4dpgyqqh" path="res://Script/playagian.cs" id="2_grmbk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_grmbk"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" unique_id=1249978399]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="กระดาษเก่า" type="TextureRect" parent="." unique_id=1121947175]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_5lmrd")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1782733629]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -284.0
+offset_top = 63.0
+offset_right = 290.0
+offset_bottom = 277.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_grmbk")
+text = "คุณตายแล้วต้องการเริ่มเล่นใหม่หรือไม่"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=995378422]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -188.0
+offset_top = -258.0
+offset_right = 158.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 36
+text = "เริ่มการผจญภัยอีกครั้ง"
+script = ExtResource("2_grmbk")

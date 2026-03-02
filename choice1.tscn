@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://bj8jg7ewbc1d8"]
+
+[ext_resource type="Texture2D" uid="uid://u4l7t7ou51a8" path="res://BattleBackground/หมู่บ้านเริ่มต้น.png" id="1_v8qlf"]
+[ext_resource type="Texture2D" uid="uid://dfrr0wsam4ex1" path="res://รูปสิ่งต่างๆ/รูปอัพ stats.png" id="2_8ht8n"]
+[ext_resource type="Script" uid="uid://0c38io0qssrr" path="res://Script/choice1stats.cs" id="3_dr4on"]
+[ext_resource type="Script" uid="uid://dbsayvh88scqg" path="res://Script/BossPriestChoice.cs" id="4_caw0x"]
+[ext_resource type="Script" uid="uid://7t1xtm6gj4en" path="res://FleeBossPriestChoice.cs" id="5_dr4on"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ht8n"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8qlf"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" unique_id=348986988]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="หมู่บ้านเริ่มต้น" type="TextureRect" parent="." unique_id=734497875]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_v8qlf")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=2070116753]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -297.0
+offset_right = 374.0
+offset_bottom = -84.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_8ht8n")
+text = "หลานรัก หนีไป พวกบ้านั่นมันกำลัง
+บุกเข้ามาเเล้วตอนนี้พวกเราต้านมันไม่อยู่แล้วพวกมันแข็งแกร่งเกินไป"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="." unique_id=298694345]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -358.0
+offset_top = -61.0
+offset_right = 369.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_v8qlf")
+text = "นั่นคือคำพูดของปู่คุณเอาหล่ะได้เวลาที่คุณต้องตัดสินใจแล้ว"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="รูปอัพStats" type="TextureButton" parent="." unique_id=338482429]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 527.0
+offset_right = 139.0
+offset_bottom = 638.0
+texture_normal = ExtResource("2_8ht8n")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_dr4on")
+
+[node name="Button" type="Button" parent="." unique_id=753363731]
+layout_mode = 0
+offset_left = 274.0
+offset_top = 359.0
+offset_right = 626.0
+offset_bottom = 501.0
+theme_override_font_sizes/font_size = 42
+text = "ยืนหยัดต่อสู้"
+script = ExtResource("4_caw0x")
+
+[node name="Button2" type="Button" parent="." unique_id=818848312]
+layout_mode = 0
+offset_left = 665.0
+offset_top = 360.0
+offset_right = 1017.0
+offset_bottom = 502.0
+theme_override_font_sizes/font_size = 42
+text = "หนี"
+script = ExtResource("5_dr4on")
+
+[connection signal="pressed" from="รูปอัพStats" to="รูปอัพStats" method="OnStatUpgradePressed"]
