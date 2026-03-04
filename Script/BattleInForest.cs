@@ -1,42 +1,44 @@
 using Godot;
 using System.Collections.Generic;
-
+//สร้างคลาส BattleInForst
 public partial class BattleInForest : Control
 {
-	// ── Enemy HUD ───────────────────────────────────────────────────────────
+	//Enemy HUD
+	//ทำให้สามารถลากวางใน godot ได้
 	[Export] private Label       _labelEnemyName;
 	[Export] private ProgressBar _hpBar;
 	[Export] private Label       _labelHpVal;
 
-	// ── Player HUD ──────────────────────────────────────────────────────────
+	//Player HUD
+	//ทำให้สามารถลากวางใน godot ได้
 	[Export] private Label       _labelPlayerName;
 	[Export] private ProgressBar _playerHpBar;
 	[Export] private Label       _labelPlayerHpVal;
 	[Export] private ProgressBar _playerMpBar;
 	[Export] private Label       _labelPlayerMpVal;
 
-	// ── Battle Log ──────────────────────────────────────────────────────────
+	//Battle Log
+	//ทำให้สามารถลากวางใน godot ได้
 	[Export] private RichTextLabel _battleLog;
 
-	// ── Dice Panel ──────────────────────────────────────────────────────────
+	//Dice Panel
+	//ทำให้สามารถลากวางใน godot ได้
 	[Export] private Control _dicePanel;
 	[Export] private Label   _diceFaceLabel;
 	[Export] private Label   _diceResultLabel;
 	[Export] private Button  _rollButton;
 	[Export] private Button  _startBattleButton;
 
-	// ── Battle result buttons ────────────────────────────────────────────────
-	[Export] private Button  _btnUpgrade;
-	[Export] private Button  _btnReturnMap;
 
-	// ── Internal State ───────────────────────────────────────────────────────
+	//สร้างตัวแปร ข้อมูลเรากับศัตรู
 	private CharacterStats _enemy;
 	private CharacterStats _player;
 
-	// ── Stats ชั่วคราว (เก็บค่าจริงไว้ แล้วสร้างตัวแทนสำหรับด่านนี้) ──────
+	//Stats ชั่วคราว เก็บค่าจริงไว้ แล้วสร้างตัวแทนสำหรับด่านนี้
 	private float _statMultiplier = 1.0f;
 
 	// stats ที่ apply multiplier แล้ว — ใช้ในการต่อสู้แทน _player โดยตรง
+	//ประกาศตัวแปร stats ต่างๆ
 	private int _battleStr;
 	private int _battleAgi;
 	private int _battleInt;
@@ -48,14 +50,14 @@ public partial class BattleInForest : Control
 	private int _originalHp;
 	private int _originalMaxHp;
 
-	// Auto-battle
+	//ประกาศตัวแปรที่ใช้ในการสู้
 	private bool  _battleStarted  = false;
 	private bool  _battleFinished = false;
 	private float _turnTimer      = 0f;
 	private const float TurnInterval = 1.2f;
 	private bool  _playerTurn     = true;
 
-	// Dice animation
+	//ประกาศตัวแปรที่ใช้ในเต๋า
 	private bool  _diceRolling  = false;
 	private float _diceTimer    = 0f;
 	private float _diceSpeed    = 0.05f;
@@ -71,45 +73,66 @@ public partial class BattleInForest : Control
 		"🎲 19","⭐ 20"
 	};
 
-	// ── Ready ────────────────────────────────────────────────────────────────
 	public override void _Ready()
 	{
+		//ดึงข้อมูลจาก Class GameManager มาเก็บไว้ในตัวแปร
 		_enemy  = GameManager.Instance.Enemy ?? CharacterStats.CreateWolf();
 		_player = GameManager.Instance.Stats;
 
+		//เรียกใช้ฟังก์ชัน
 		RefreshEnemyHUD();
 		RefreshPlayerHUD();
 
-		if (_btnUpgrade    != null) _btnUpgrade.Visible    = false;
-		if (_btnReturnMap  != null) _btnReturnMap.Visible  = false;
+		//ล้างข้อความผลเต๋าให้ว่างเปล่า
 		if (_diceResultLabel   != null) _diceResultLabel.Text      = "";
+		
+		//ซ่อนปุ่ม Start Battle
 		if (_startBattleButton != null) _startBattleButton.Visible = false;
+
+		//แสดง Dice Panel ขึ้นมา
 		if (_dicePanel         != null) _dicePanel.Visible         = true;
 
+		//แสดงข้อความใน log
 		AppendLog("[color=yellow]🎲 ทอยเต๋าเพื่อกำหนดพลังในด่านนี้![/color]");
 	}
 
 	// ── Process ──────────────────────────────────────────────────────────────
 	public override void _Process(double delta)
 	{
+		//แปลง delta เป็นแล้วเก็บใน ตัวแปร dt
 		float dt = (float)delta;
 
+		//ถ้าเงื่อนไขเป็นจริงให้ทำงาน
 		if (_diceRolling)
 		{
+			//ตัวแปรบวกกับ dt
 			_diceElapsed += dt;
+			
+			//ตัวแปรลบกับ dt
 			_diceTimer   -= dt;
 
+			//ถ้าตัวแปรลบจนน้อยกว่าหรือเท่ากับ 0 เข้าไปทำข้างใน
 			if (_diceTimer <= 0f)
 			{
+				//สุ่มเลข 1-20 มา 1 ตัว เก็บไว้ใน face
 				int face = _rng.Next(1, 21);
-				if (_diceFaceLabel != null)
-					_diceFaceLabel.Text = DiceFaceSymbols[face - 1];
 
+				//เช็คว่าตัวแปรไม่เป็น null ใช่ไหม
+				if (_diceFaceLabel != null)
+					
+					//แสดงลูกเต๋าตามที่สุ่มได้
+					_diceFaceLabel.Text = DiceFaceSymbols[face - 1];
+				
+				//คำนวณการสุ่ม
 				float progress = _diceElapsed / DiceDuration;
+				
+				//ทำให้ความเร็วการสุ่มเร็วขึ้นและค่อยๆช้าลงตาม progress
 				_diceSpeed = Mathf.Lerp(0.04f, 0.25f, progress);
+				
+				//เอาค่า dicespeed มาใส่ dicetimer เพื่อให้มันหมุนเรื่อยๆ
 				_diceTimer = _diceSpeed;
 			}
-
+			//ถ้า _diceElapsed >= DiceDuration ปิดการหมุนเต๋า และแสดงผลลัพธ์
 			if (_diceElapsed >= DiceDuration)
 			{
 				_diceRolling = false;
@@ -117,38 +140,48 @@ public partial class BattleInForest : Control
 			}
 			return;
 		}
-
+		//เช็คเงื่อนไขถ้าจริงให้เข้าไปทำข้างใน
 		if (!_battleStarted || _battleFinished) return;
 
 		_turnTimer -= dt;
+		/*เช็คเงื่อนไขถ้าจริงไม่ต้องทำไร ถ้าเท็จให้เข้าไปทำข้างในโดยรี _turnTimer = TurnInterval;
+ 		แล้วเรียกใช้ ExecuteTurn();*/
 		if (_turnTimer > 0f) return;
 		_turnTimer = TurnInterval;
 
 		ExecuteTurn();
 	}
 
-	// ── Dice ─────────────────────────────────────────────────────────────────
+	//Dice
+	//ศร้างฟังก์ชัน
 	public void OnRollButtonPressed()
 	{
+		//เช็คเงื่อนไช
 		if (_diceRolling) return;
 
+		//ตัวแปรที่เก็บผลทอยเต๋าจริงๆ
 		_diceResult  = _rng.Next(1, 21);
+		//กำหนดค่าตัวแปร
 		_diceRolling = true;
 		_diceElapsed = 0f;
 		_diceTimer   = 0.04f;
 		_diceSpeed   = 0.04f;
 
+		//ถ้าตามเงื่อน ปิดปุ่ม ล้างค่า ซ่อนปุ่ม ตามลำดับ
 		if (_rollButton        != null) _rollButton.Disabled        = true;
 		if (_diceResultLabel   != null) _diceResultLabel.Text       = "";
 		if (_startBattleButton != null) _startBattleButton.Visible  = false;
 	}
 
+	//สร้างฟังก์ชัน
 	private void ShowDiceResult(int result)
 	{
+		//ถ้าตามเงื่อนไขแสดงลูกเต๋า
 		if (_diceFaceLabel != null)
 			_diceFaceLabel.Text = DiceFaceSymbols[result - 1];
-
+		//จองช่องข้อความไว้
 		string effectText;
+		//เงื่อนไขการกำหนดค่าตัวแปร
 		if      (result <= 5)  { _statMultiplier = 0.80f; effectText = "[color=red]Stats −20%![/color]"; }
 		else if (result <= 9)  { _statMultiplier = 0.90f; effectText = "[color=orange]Stats −10%[/color]"; }
 		else if (result == 10) { _statMultiplier = 1.00f; effectText = "[color=white]Stats ปกติ[/color]"; }
@@ -157,17 +190,20 @@ public partial class BattleInForest : Control
 		else if (result <= 19) { _statMultiplier = 2.00f; effectText = "[color=green]Stats +100%[/color]"; }
 		else                   { _statMultiplier = 3.00f; effectText = "[color=gold]⭐ Stats +200%![/color]"; }
 
+		//แสดงผลใน label
 		if (_diceResultLabel != null)
 			_diceResultLabel.Text = $"ได้ {result} → {StripColor(effectText)}";
-
+		
+		//แสดงข้อความใน log
 		AppendLog($"🎲 ทอยได้ [b]{result}[/b] → {effectText}");
-
+		
+		//แสดงปุ่ม start button
 		if (_startBattleButton != null) _startBattleButton.Visible = true;
 	}
 
-	// ── Apply Temporary Stats ────────────────────────────────────────────────
-	/// คำนวณ stats ชั่วคราวจาก multiplier และเก็บไว้ใน _battle* variables
-	/// ค่าจริงของ _player ไม่ถูกแตะเลย ปลอดภัย 100%
+	// Apply Temporary Stats
+	/// คำนวณ stats ชั่วคราวจาก multiplier และเก็บไว้ใน _battle
+	/// ค่าจริงของ _player ไม่ถูกแตะเล
 	private void ApplyBattleStats()
 	{
 		_originalHp    = _player.Hp;
@@ -190,7 +226,7 @@ public partial class BattleInForest : Control
 		AppendLog($"[color=aqua] Stats ในด่านนี้: STR {_battleStr} | AGI {_battleAgi} | INT {_battleInt} | DEF {_battleDef}[/color]");
 	}
 
-	// ── Start Battle ─────────────────────────────────────────────────────────
+	//Start Battle
 	public void OnStartBattlePressed()
 	{
 		if (_dicePanel != null) _dicePanel.Visible = false;
@@ -300,12 +336,6 @@ public partial class BattleInForest : Control
 	ShowResultButtons();
 	GetTree().ChangeSceneToFile("res://diescene.tscn");
 }
-
-	private void ShowResultButtons()
-	{
-		if (_btnUpgrade   != null) _btnUpgrade.Visible   = true;
-		if (_btnReturnMap != null) _btnReturnMap.Visible = true;
-	}
 
 	// ── HUD Refresh ──────────────────────────────────────────────────────────
 	private void RefreshEnemyHUD()
